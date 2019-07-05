@@ -1,0 +1,46 @@
+{{> header}}
+<body>
+<div class="page-header">
+    <h1>Department</h1>
+</div>
+<div class="modal" id="batchModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <p>Batch Created Successfuly.</p>
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+    <div class="col-sm-4">
+        <form class="form-group">
+            <div class="form-group">
+                <label for="batch">Department Name:</label>
+                <input type="text" id="departmentName" class="form-control" placeholder="Enter Department Name" >
+            </div>
+
+            <button type="button" id="submit-department" class="btn btn-info">Submit</button>
+        </form>
+    </div>
+
+    <div class="col-sm-8">
+        <table id="department-table" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+
+            </tr>
+        </thead>
+        <tbody></tbody>
+
+    </table>
+    </div>
+</div>
+<script src="/department/department.js"/>
+{{> footer}}
