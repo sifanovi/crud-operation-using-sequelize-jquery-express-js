@@ -9,8 +9,10 @@ route.use(bodyParser.json());
 route.use(bodyParser.urlencoded({extended: true}));
 
 route.get("/", function (req, res) {
-    return batchModel.findAll().then(function (batch) {
-        res.send(batch);
+    return batchModel.findAll().then(function (batches) {
+        res.send({status: 200, data: batches, message: "batch found"})
+    }).catch(function (err) {
+        res.send({status: 500, data: err, message: "batch not found"})
     })
 })
 
@@ -21,12 +23,9 @@ route.post("/", upload.array(), function (req, res) {
     return batchModel.create(
         postData).then((batches) => {
 
-        res.sendStatus(201).send(batches)
+        res.send({status: 201, data: batches, message: "batch created successfully"})
     }).catch((err) => {
-        console.log(err);
-        res.sendStatus(501).send({
-            error: "Could not create a batch"
-        })
+        res.send({status: 500, data: err, message: "could not create batch"})
     })
 })
 route.delete("/delete/:batchId", function (req, res) {
@@ -34,14 +33,12 @@ route.delete("/delete/:batchId", function (req, res) {
     batchModel
         .destroy({where: {id: req.params.batchId}})
         .then(function (result) {
-            res.sendStatus(200).send(result);
+            res.send({status: 200, data: result, message: "batch deleted successfully"})
 
         })
         .catch(function (err) {
 
-            res.sendStatus(501).send({
-                error: err
-            })
+            res.send({status: 500, data: err, message: "could not delete batch"})
 
         });
 })
