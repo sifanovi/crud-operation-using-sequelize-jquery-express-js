@@ -19,13 +19,14 @@
 </div>
 <div class="container">
     <div class="col-sm-4">
-        <form class="form-group">
+        <form id="department-form" class="form-group">
             <div class="form-group">
                 <label for="batch">Department Name:</label>
-                <input type="text" id="departmentName" class="form-control" placeholder="Enter Department Name" >
+                <input type="text" id="departmentName" name="departmentName" class="form-control" placeholder="Enter Department Name" >
             </div>
 
             <button type="button" id="submit-department" class="btn btn-info">Submit</button>
+            <button type="button" value="Update" id="update-department" class="hide btn btn-info">Update</button>
         </form>
     </div>
 
@@ -40,9 +41,11 @@
         <tbody></tbody>
 
     </table>
-     <button class="btn btn-danger pull-right margin-left-5px" id="delete-batch">Delete</button>
-          <button class="btn btn-primary pull-right margin-left-2" id="edit-batch">Edit</button>
+     <button class="btn btn-danger pull-right margin-left-5px" id="delete">Delete</button>
+          <button class="btn btn-primary pull-right margin-left-5px" id="edit">Edit</button>
+           <button class="btn btn-primary pull-right margin-left-5px" id="add">Add</button>
+
     </div>
 </div>
-<script src="/department/department.js"/>
+<script src="/department/department.js"> </script>
 {{> footer}}

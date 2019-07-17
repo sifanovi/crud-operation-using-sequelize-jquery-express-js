@@ -1,8 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
     var batch = sequelize.define('batch', {
 
-            id:
-                {
+            id:{
                     type: DataTypes.INTEGER,
                     primaryKey: true,
                     autoIncrement: true,

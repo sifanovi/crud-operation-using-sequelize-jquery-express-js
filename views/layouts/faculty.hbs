@@ -19,30 +19,31 @@
 </div>
 <div class="container">
     <div class="col-sm-4">
-        <form class="form-group">
+        <form id="faculty-form" class="form-group">
               <div class="form-group">
                 <label for="pwd">Department Id:</label>
-                <select id="departmentId" class="form-control">
+                <select id="departmentId" name="departmentId" class="form-control">
                    
                 </select>
             </div>
             <div class="form-group">
                 <label for="batch">Teacher Name:</label>
-                <input type="text" id="teacherName" class="form-control" placeholder="Enter Teacher Name">
+                <input type="text" id="teacherName" name="teacherName" class="form-control" placeholder="Enter Teacher Name">
             </div>
             <div class="form-group">
                 <label for="batch">Address:</label>
-                <input type="text" id="address" class="form-control" placeholder="Enter Address">
+                <input type="text" id="address" name="address" class="form-control" placeholder="Enter Address">
             </div>
             <div class="form-group">
                 <label for="batch">Phone Number:</label>
-                <input type="text" id="phoneNumber" class="form-control" placeholder="Enter Phone Number">
+                <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="Enter Phone Number">
             </div>
             <div class="form-group">
                 <label for="batch">Job Description:</label>
-                <input type="text" id="jobDescription" class="form-control" placeholder="Enter Job Description">
+                <input type="text" id="jobDescription" name="jobDescription" class="form-control" placeholder="Enter Job Description">
             </div>
             <button type="button" id="submit-faculty" class="btn btn-info">Submit</button>
+            <button type="button" value="Update" id="update-faculty" class="hide btn btn-info">Update</button>
         </form>
     </div>
 
@@ -62,9 +63,11 @@
             <tbody></tbody>
 
         </table>
-         <button class="btn btn-danger pull-right margin-left-5px" id="delete-batch">Delete</button>
-          <button class="btn btn-primary pull-right margin-left-2" id="edit-batch">Edit</button>
+         <button class="btn btn-danger pull-right margin-left-5px" id="delete">Delete</button>
+          <button class="btn btn-primary pull-right margin-left-5px" id="edit">Edit</button>
+           <button class="btn btn-primary pull-right margin-left-5px" id="add">Add</button>
+
     </div>
 </div>
-<script src="/faculty/faculty.js"/>
+<script src="/faculty/faculty.js"> </script>
 {{> footer}}

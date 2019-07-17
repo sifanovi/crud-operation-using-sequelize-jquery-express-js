@@ -19,16 +19,17 @@
 </div>
 <div class="container">
     <div class="col-sm-4">
-        <form class="form-group">
+        <form id="course-form" class="form-group">
             <div class="form-group">
                 <label for="batch">Course Name:</label>
-                <input type="text" id="courseName" class="form-control" placeholder="Enter Course Name" >
+                <input type="text" id="courseName" name="courseName" class="form-control" placeholder="Enter Course Name" >
             </div>
             <div class="form-group">
                 <label for="batch">Course Number:</label>
-                <input type="text" id="courseNumber" class="form-control" placeholder="Enter Course Number">
+                <input type="text" id="courseNumber" name="courseNumber" class="form-control" placeholder="Enter Course Number">
             </div>
             <button type="button" id="submit-course" class="btn btn-info">Submit</button>
+            <button type="button" value="Update" id="update-course" class="hide btn btn-info">Update</button>
         </form>
     </div>
 
@@ -44,9 +45,11 @@
         <tbody></tbody>
 
     </table>
-     <button class="btn btn-danger pull-right margin-left-5px" id="delete-batch">Delete</button>
-          <button class="btn btn-primary pull-right margin-left-2" id="edit-batch">Edit</button>
+     <button class="btn btn-danger pull-right margin-left-5px" id="delete">Delete</button>
+          <button class="btn btn-primary pull-right margin-left-5px" id="edit">Edit</button>
+           <button class="btn btn-primary pull-right margin-left-5px" id="add">Add</button>
+
     </div>
 </div>
-<script src="/course/course.js"/>
+<script src="/course/course.js"></script>
 {{> footer}}

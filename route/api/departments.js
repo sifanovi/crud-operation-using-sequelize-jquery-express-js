@@ -12,6 +12,11 @@ route.get("/", function (req, res) {
         res.send({status:"200",data:departments,message:"departments Found"});
     })
 })
+route.get("/:id", function (req, res) {
+    return departmentModel.findOne({where:{id:req.params.id}}).then(function (result) {
+        res.send({status:"200",data:result,"message":"found"});
+    })
+})
 route.post("/", upload.array(), function (req, res) {
     var postData = req.body;
 
@@ -24,6 +29,20 @@ route.post("/", upload.array(), function (req, res) {
         res.sendStatus(501).send({
             error: "Could not create a department"
         })
+    })
+})
+route.put("/:id", upload.array(), function (req, res) {
+    var postData = req.body;
+
+
+    return departmentModel.update(
+        postData,{
+            where:{"id":req.params.id}
+        }).then((result) => {
+
+        res.send({status: 201, data: result, message: "updated successfully"})
+    }).catch((err) => {
+        res.send({status: 500, data: err, message: "could not update"})
     })
 })
 route.delete("/delete/:departmentId", function (req, res) {

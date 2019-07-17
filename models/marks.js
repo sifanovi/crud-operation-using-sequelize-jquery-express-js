@@ -24,15 +24,15 @@ module.exports = (sequelize, DataTypes) => {
   },
   quizMarks:{
     allowNull:false,
-    type:DataTypes.DECIMAL
+    type:DataTypes.STRING
   },
   finalMarks:{
     allowNull:false,
-    type:DataTypes.DECIMAL,
+    type:DataTypes.STRING,
   },
   grade:{
     allowNull:false,
-    type:DataTypes.DECIMAL
+    type:DataTypes.STRING
   },
   createdAt:{
     allowNull:false,

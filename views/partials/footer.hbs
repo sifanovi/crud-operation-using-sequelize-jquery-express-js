@@ -1,6 +1,38 @@
 <!-- Bootstrap core JavaScript-->
 
+<div class="modal" id="deleteModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
 
+            <div class="modal-body">
+                <p>Are you sure to commit this changes to database ?</p>
+            </div>
+            <div class="modal-footer">
+             <button id="proceedDelete" class="btn btn-danger pull-right margin-left-5px" >Yes</button>
+                  <button id="cancelDelete" class="btn btn-default pull-right margin-left-5px" >Cancel</button>
+            </div>
+
+           
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="editModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <p>Are you sure to edit this row ?</p>
+       </div>
+            <div class="modal-footer">
+             <button id="proceedEdit" class="btn btn-danger pull-right margin-left-5px" >Yes</button>
+                  <button id="cancelEdit" class="btn btn-default pull-right margin-left-5px" >Cancel</button>
+            </div>
+
+           
+        </div>
+    </div>
+</div>
 <script src="/js/bootstrap.js"></script>
 <script src="/js/jquery.validate.js"></script>
 <script src="/js/jquery.dataTables.min.js"></script>

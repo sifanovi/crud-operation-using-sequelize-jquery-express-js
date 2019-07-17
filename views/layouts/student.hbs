@@ -19,32 +19,32 @@
 </div>
 <div class="container">
     <div class="col-sm-4">
-        <form class="<p></p>form-group">
+        <form id="student-form" class="form-group">
             <div class="form-group">
                 <label for="pwd">Batch Id:</label>
-                <select id="batchId" class="form-control">
+                <select id="batchId" name="batchId" class="form-control">
                    
                 </select>
             </div>
             <div class="form-group">
                 <label for="batch">Student Name:</label>
-                <input type="text" id="studentName" class="form-control" placeholder="Enter Student Name">
+                <input type="text" id="studentName" name="studentName" class="form-control" placeholder="Enter Student Name">
             </div>
              <div class="form-group">
                 <label for="batch">Date Of Birth:</label>
-                <input type="date" id="studentDateOfBirth" class="form-control" placeholder="Enter Date Of Birth">
+                <input type="date" id="studentDateOfBirth" name="studentDateOfBirth" class="form-control" placeholder="Enter Date Of Birth">
             </div>
             <div class="form-group">
                 <label for="batch">Address:</label>
-                <input type="text" id="studentAddress" class="form-control" placeholder="Enter Address">
+                <input type="text" id="studentAddress" name="studentAddress" class="form-control" placeholder="Enter Address">
             </div>
             <div class="form-group">
                 <label for="batch">Phone Number:</label>
-                <input type="text" id="studentPhoneNumber" class="form-control" placeholder="Enter Phone Number">
+                <input type="text" id="studentPhoneNumber" name="studentPhoneNumber" class="form-control" placeholder="Enter Phone Number">
             </div>
             <div class="form-group">
                 <label for="batch">Section Name:</label>
-                <select class="form-control" id="sectionName">
+                <select class="form-control" name="sectionName" id="sectionName">
                     <option value="A">A</option>
                     <option value="B">B</option>
                     <option value="C">C</option>
@@ -53,6 +53,8 @@
                 </select>
             </div>
             <button type="button" id="submit-student" class="btn btn-info">Submit</button>
+               <button type="button" id="update-student" class="hide btn btn-info">Update</button>
+
         </form>
     </div>
 
@@ -74,9 +76,11 @@
             <tbody></tbody>
 
         </table>
-         <button class="btn btn-danger pull-right margin-left-5px" id="delete-batch">Delete</button>
-          <button class="btn btn-primary pull-right margin-left-2" id="edit-batch">Edit</button>
+         <button class="btn btn-danger pull-right margin-left-5px" id="delete">Delete</button>
+          <button class="btn btn-primary pull-right margin-left-5px" id="edit">Edit</button>
+           <button class="btn btn-primary pull-right margin-left-5px" id="add">Add</button>
+
     </div>
 </div>
-<script src="/student/student.js"/>
+<script src="/student/student.js"> </script>
 {{> footer}}

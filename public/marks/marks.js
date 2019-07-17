@@ -1,6 +1,37 @@
 $(window).on('load', function () {
 
 
+       $("#marks-form").validate({
+        rules: {
+            batchId:"required",
+            studentId:"required",
+            courseId:"required",
+            teacherId:"required",
+            quizMarks:"required",
+            finalMarks:"required",
+
+            
+            
+        },
+       
+        errorElement: "em",
+        errorPlacement: function (error, element) {
+            // Add the `help-block` class to the error element
+            error.addClass("help-block");
+
+            if (element.prop("type") === "checkbox") {
+                error.insertAfter(element.parent("label"));
+            } else {
+                error.insertAfter(element);
+            }
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).parents(".col-sm-5").addClass("has-error").removeClass("has-success");
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).parents(".col-sm-5").addClass("has-success").removeClass("has-error");
+        }
+    });
 
     function createQuizTemplate(number)
     {
@@ -22,13 +53,16 @@ $(window).on('load', function () {
         $.each(data, function (row, tablerow) {
 
 
-            body = body + "<tr><td>" + tablerow.id + "</td><td>" + tablerow.batchId + "</td><td>" + tablerow.studentId + "</td><td>" + tablerow.courseId + "</td><td>" + tablerow.teacherId + "</td><td>" + tablerow.quizMarks + "</td><td>" + tablerow.finalMarks + "</td></tr>"
+            body = body + "<tr id="+tablerow.id+"><td>" + tablerow.id + "</td><td>" + tablerow.batchId + "</td><td>" + tablerow.studentId + "</td><td>" + tablerow.courseId + "</td><td>" + tablerow.teacherId + "</td><td>" + tablerow.quizMarks + "</td><td>" + tablerow.finalMarks + "</td></tr>"
 
 
         })
         $("#marks-table").find("tbody").empty().append(body);
         $("#marks-table").DataTable();
-         $('#marks-table tbody').on('click', 'tr', function () {
+      
+
+    }
+   $('#marks-table tbody').on('click', 'tr', function () {
          if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
         }
@@ -37,9 +71,6 @@ $(window).on('load', function () {
             $(this).addClass('selected');
         }
         });
-
-    }
-
     
 
 function populatesbatches()
@@ -135,7 +166,7 @@ populatemarksTable();
     function createMarks(payload) {
         console.log(payload)
         $.ajax({
-            url: "/api/student/",
+            url: "/api/marks/",
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -146,6 +177,9 @@ populatemarksTable();
         }).done(function (data) {
 
            alert("Marks Submitted Succesfully");
+            if ($.fn.DataTable.isDataTable("#marks-table")) {
+                $('#marks-table').DataTable().clear().destroy();
+            }
             populatemarksTable();
 
         })
@@ -216,16 +250,61 @@ populatemarksTable();
 
     })
 
-    $("#submit-marks").click(function () {
-        payload = {};
+        function updateMarks(id,payload) {
+        $.ajax({
+            url: "/api/marks/"+id,
+            method: "PUT",
+            headers: {
+                "content-type": "application/json"
+            },
+            data: JSON.stringify(payload),
+
+
+        }).done(function (data) {
+
+            alert("Marks Updated Succesfully");
+            if ($.fn.DataTable.isDataTable("#marks-table")) {
+                $('#marks-table').DataTable().clear().destroy();
+            }
+            populatemarksTable();
+
+        })
+
+    }
+      $("#update-marks").click(function () {
+         var id=$("#marks-table tr.selected").attr("id");
+             if($("#marks-form").valid())
+        {
+         payload = {};
         payload['batchId'] = $("#batchId").val();
         payload['studentId'] = $("#studentId").val();
-        payload['teacherId'] = $("#teacher").val();
+        payload['teacherId'] = $("#teacherId").val();
         payload['courseId'] = $("#courseId").val();
         payload['quizMarks'] = $("#quizMarks").val();
         payload['finalMarks'] = $("#finalMarks").val();
+          payload['grade'] = $("#grade").val();
+          updateMarks(id,payload)
+   }
+    
+    
+
+    })
+
+    $("#submit-marks").click(function () {
+
+        if($("#marks-form").valid())
+        {
+        payload = {};
+        payload['batchId'] = $("#batchId").val();
+        payload['studentId'] = $("#studentId").val();
+        payload['teacherId'] = $("#teacherId").val();
+        payload['courseId'] = $("#courseId").val();
+        payload['quizMarks'] = $("#quizMarks").val();
+        payload['finalMarks'] = $("#finalMarks").val();
+          payload['grade'] = $("#grade").val();
 
         createMarks(payload);
+    }
 
     })
     function averageOfQuiz()
@@ -271,7 +350,93 @@ populatemarksTable();
         $("#quiz-template").empty();
     }
     })
+     
+                function edititem(id) {
+        $.ajax({
+            url: "/api/marks/"+id,
+            method: "GET",
+            headers: {
+                "content-type": "application/json"
+            },
+          
+       }).done(function (data) {
+        $("#batchId").val(data.data.batchId);
+         $("#studentId").val(data.data.studentId);
+          $("#courseId").val(data.data.courseId);
+            $("#teacherId").val(data.data.teacherId);
+              $("#quizMarks").val(data.data.quizMarks);
+                $("#finalMarks").val(data.data.finalMarks);
+                 $("#grade").val(data.data.grade);
+                 $("#submit-marks").addClass("hide");
+        $("#update-marks").removeClass("hide");
 
+           
+     
+       })
+
+    }
+     $("#edit").click(function()
+    {
+      if($("#marks-table tr.selected").attr("id"))
+      {
+        $("#editModal").show();
+      }
+    })
+      $("#proceedEdit").click(function()
+    {
+
+      edititem($("#marks-table tr.selected").attr("id"));
+      $("#editModal").hide();
+    })
+
+       $("#cancelEdit").click(function()
+    {
+        $("#editModal").hide();
+    })
+
+
+
+     function deleteitem(id) {
+        $.ajax({
+            url: "/api/marks/delete/"+id,
+            method: "DELETE",
+            headers: {
+                "content-type": "application/json"
+            },
+          
+       }).done(function (data) {
+
+            alert("marks deleted Succesfully");
+            if ($.fn.DataTable.isDataTable("#marks-table")) {
+                $('#marks-table').DataTable().clear().destroy();
+            }
+            populatemarksTable();
+
+        })
+
+    }
+
+    $("#delete").click(function()
+    {
+      if($("#marks-table tr.selected").attr("id"))
+      {
+        $("#deleteModal").show();
+      }
+    })
+    $("#proceedDelete").click(function()
+    {
+      deleteitem($("#marks-table tr.selected").attr("id"));
+      $("#deleteModal").hide();
+    })
+
+    $("#cancelDelete").click(function()
+    {
+        $("#deleteModal").hide();
+    })
+    
+
+
+  
   
     
        

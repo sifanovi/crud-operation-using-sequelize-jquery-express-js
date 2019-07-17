@@ -48,7 +48,11 @@ $(window).on('load', function () {
         })
         $("#batch-table").find("tbody").empty().append(body);
         $("#batch-table").DataTable();
-        $('#batch-table tbody').on('click', 'tr', function () {
+       
+
+    }
+
+     $('#batch-table tbody').on('click', 'tr', function () {
          if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
         }
@@ -57,8 +61,6 @@ $(window).on('load', function () {
             $(this).addClass('selected');
         }
         });
-
-    }
 
     function populatebatchTable() {
         $.ajax({
@@ -98,6 +100,29 @@ $(window).on('load', function () {
 
     }
 
+    function updateBatch(id,payload) {
+        $.ajax({
+            url: "/api/batch/"+id,
+            method: "PUT",
+            headers: {
+                "content-type": "application/json"
+            },
+            data: JSON.stringify(payload),
+
+
+        }).done(function (data) {
+
+            alert("Batch Updated Succesfully");
+            if ($.fn.DataTable.isDataTable("#batch-table")) {
+                $('#batch-table').DataTable().clear().destroy();
+            }
+            populatebatchTable();
+
+        })
+
+    }
+       
+
     $("#submit-batch").click(function () {
         if ($("#batchForm").valid()) {
             payload = {};
@@ -108,6 +133,98 @@ $(window).on('load', function () {
         }
 
 
+    })
+       $("#update-batch").click(function () {
+
+        if ($("#batchForm").valid()) {
+            id=$("#batch-table tr.selected").attr("id");
+            payload = {};
+            payload['batchName'] = $("#batchName").val();
+            payload['session'] = $("#session").val();
+            updateBatch(id,payload)
+
+        }
+
+
+    })
+
+     function deleteitem(id) {
+        $.ajax({
+            url: "/api/batch/delete/"+id,
+            method: "DELETE",
+            headers: {
+                "content-type": "application/json"
+            },
+          
+       }).done(function (data) {
+
+            alert("Batch deleted Succesfully");
+            if ($.fn.DataTable.isDataTable("#batch-table")) {
+                $('#batch-table').DataTable().clear().destroy();
+            }
+            populatebatchTable();
+
+        })
+
+    }
+
+
+
+    $("#delete").click(function()
+    {
+      if($("#batch-table tr.selected").attr("id"))
+      {
+        $("#deleteModal").show();
+      }
+    })
+
+            function edititem(id) {
+        $.ajax({
+            url: "/api/batch/"+id,
+            method: "GET",
+            headers: {
+                "content-type": "application/json"
+            },
+          
+       }).done(function (data) {
+        $("#batchName").val(data.data.batchName);
+        $("#session").val(data.data.session);
+        $("#submit-batch").addClass("hide");
+        $("#update-batch").removeClass("hide");
+       })
+
+    }
+     $("#edit").click(function()
+    {
+      if($("#batch-table tr.selected").attr("id"))
+      {
+        $("#editModal").show();
+      }
+    })
+      $("#proceedEdit").click(function()
+    {
+
+      edititem($("#batch-table tr.selected").attr("id"));
+      $("#editModal").hide();
+    })
+
+       $("#cancelEdit").click(function()
+    {
+        $("#editModal").hide();
+    })
+
+
+
+
+    $("#proceedDelete").click(function()
+    {
+      deleteitem($("#batch-table tr.selected").attr("id"));
+      $("#deleteModal").hide();
+    })
+
+    $("#cancelDelete").click(function()
+    {
+        $("#deleteModal").hide();
     })
 
 })

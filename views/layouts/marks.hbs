@@ -19,49 +19,49 @@
 </div>
 <div class="container">
     <div class="col-sm-4">
-        <form class="<p></p>form-group">
+        <form id="marks-form" class="<p></p>form-group">
             <div class="form-group">
                 <label for="pwd">Batch:</label>
-                <select id="batchId" class="form-control">
+                <select id="batchId" name="batchId" class="form-control">
                    
                 </select>
             </div>
            
             <div class="form-group">
                 <label for="batch">Student Id:</label>
-                <input type="text" id="studentId" class="form-control" placeholder="Enter Student Id">
+                <input type="text" id="studentId" name="studentId" class="form-control" placeholder="Enter Student Id">
             </div>
             <div class="form-group">
                 <label for="pwd">Course:</label>
-                <select id="courseId" class="form-control">
+                <select id="courseId" name="courseId" class="form-control">
                    
                 </select>
             </div>
             <div class="form-group">
                 <label for="pwd">Teacher:</label>
-                <select id="teacherId" class="form-control">
+                <select id="teacherId" name="teacherId" class="form-control">
                    
                 </select>
             </div>
 
              <div class="form-group">
                 <label for="batch">Number Of Quiz:</label>
-                <input type="text" id="numberOfQuiz" class="form-control" placeholder="Enter Number Of Quiz">
+                <input type="text" id="numberOfQuiz" name="numberOfQuiz" class="form-control" placeholder="Enter Number Of Quiz">
             </div>
             <div class="form-group" id="quiz-template">
             </div>
              <div class="form-group">
                 <label for="batch">Quiz</label>
-                <input type="text" id="quizMarks" class="form-control" placeholder="Enter Quiz Marks">
+                <input type="text" id="quizMarks" name="quizMarks" class="form-control" placeholder="Enter Quiz Marks">
             </div>
             <div class="form-group">
                 <label for="batch">Final</label>
-                <input type="text" id="finalMarks" class="form-control" placeholder="Enter Final Marks">
+                <input type="text" id="finalMarks" name="finalMarks" class="form-control" placeholder="Enter Final Marks">
             </div>
           
             <div class="form-group">
                 <label for="batch">Grade:</label>
-                <select class="form-control" id="grade">
+                <select class="form-control" name="grade" id="grade">
                  <option value="">Select</option>
                     <option value="4.00">A+</option>
                     <option value="3.75">A</option>
@@ -84,6 +84,7 @@
                 </select>
             </div>
             <button type="button" id="submit-marks" class="btn btn-info">Submit</button>
+            <button type="button" value="Update" id="update-marks" class="hide btn btn-info">Update</button>
         </form>
     </div>
 
@@ -105,9 +106,11 @@
             <tbody></tbody>
 
         </table>
-         <button class="btn btn-danger pull-right margin-left-5px" id="delete-batch">Delete</button>
-          <button class="btn btn-primary pull-right margin-left-2" id="edit-batch">Edit</button>
+         <button class="btn btn-danger pull-right margin-left-5px" id="delete">Delete</button>
+          <button class="btn btn-primary pull-right margin-left-5px" id="edit">Edit</button>
+           <button class="btn btn-primary pull-right margin-left-5px" id="add">Add</button>
+
     </div>
 </div>
-<script src="/marks/marks.js"/>
+<script src="/marks/marks.js"> </script>
 {{> footer}}

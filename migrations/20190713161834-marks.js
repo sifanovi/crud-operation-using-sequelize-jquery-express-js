@@ -27,15 +27,15 @@ module.exports = {
   },
   quizMarks:{
     allowNull:false,
-    type:Sequelize.DECIMAL
+    type:Sequelize.STRING
   },
   finalMarks:{
     allowNull:false,
-    type:Sequelize.DECIMAL,
+    type:Sequelize.STRING,
   },
   grade:{
     allowNull:false,
-    type:Sequelize.DECIMAL
+    type:Sequelize.STRING
   },
   createdAt:{
     allowNull:false,

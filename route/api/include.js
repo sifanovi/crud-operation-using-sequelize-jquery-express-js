@@ -27,6 +27,20 @@ route.post("/", upload.array(), function (req, res) {
         })
     })
 });
+route.put("/:id", upload.array(), function (req, res) {
+    var postData = req.body;
+
+
+    return includeModel.update(
+        postData,{
+            where:{"id":req.params.id}
+        }).then((result) => {
+
+        res.send({status: 201, data: result, message: "updated successfully"})
+    }).catch((err) => {
+        res.send({status: 500, data: err, message: "could not update"})
+    })
+})
 route.delete("/delete/:includeId", function (req, res) {
 
     includeModel
