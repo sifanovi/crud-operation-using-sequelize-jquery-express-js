@@ -8,8 +8,8 @@ var departmentModel = sequelize.models.departments;
 route.use(bodyParser.json()); // for parsing application/json
 route.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencoded
 route.get("/", function (req, res) {
-    return departmentModel.findAll().then(function (course) {
-        res.send(course);
+    return departmentModel.findAll().then(function (departments) {
+        res.send({status:"200",data:departments,message:"departments Found"});
     })
 })
 route.post("/", upload.array(), function (req, res) {

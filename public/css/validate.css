@@ -2,3 +2,13 @@
 {
     color:red;
 }
+
+.selected{
+	background-color:gray !important;
+} 
+
+.margin-left-5px
+{
+	margin-left:5px;
+}
+

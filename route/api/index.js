@@ -7,5 +7,8 @@ route.use('/faculty',require('./faculty'));
 route.use('/include',require('./include'));
 route.use('/student',require('./student'));
 route.use('/takes',require('./takes'));
+route.use('/marks',require('./marks'));
+route.use('/register',require('./register'));
+
 
 exports=module.exports={route};

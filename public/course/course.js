@@ -13,7 +13,13 @@ $(window).on('load', function () {
         $("#course-table").find("tbody").empty().append(body);
         $("#course-table").DataTable();
         $('#course-table tbody').on('click', 'tr', function () {
-            $(this).toggleClass('selected');
+         if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+        }
+        else {
+            $("#course-table tr.selected").removeClass('selected');
+            $(this).addClass('selected');
+        }
         });
 
     }

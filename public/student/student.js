@@ -12,15 +12,45 @@ $(window).on('load', function () {
         })
         $("#student-table").find("tbody").empty().append(body);
         $("#student-table").DataTable();
-        $('#student-table tbody tr').bind('click');
+      $('#student-table tbody').on('click', 'tr', function () {
+         if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+        }
+        else {
+            $("#student-table tr.selected").removeClass('selected');
+            $(this).addClass('selected');
+        }
+        });
 
     }
 
-     $('tr [role=row]').click(function () {
-            $(this).toggleClass('selected');
-        });
+    
+
+function populatesbatches()
+{
+     $.ajax({
+        url: "/api/batch/",
+        method: "GET"
 
 
+    }).done(function (response) {
+        console.log(response);
+        var choices="";
+        $.each(response['data'],function(id,column)
+        {
+            choices=choices+"<option value='"+column.id+"'>"+column.batchName+"</option>";
+
+        })
+        console.log(choices);
+        $("#batchId").append(choices);
+      
+        
+    }).fail(function (data) {
+        console.error(data);
+    }) 
+}     
+
+populatesbatches();
 function populatestudentTable()
 {
       $.ajax({

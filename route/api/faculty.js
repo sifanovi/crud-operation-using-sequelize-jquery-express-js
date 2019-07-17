@@ -9,7 +9,7 @@ route.use(bodyParser.json()); // for parsing application/json
 route.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencoded
 route.get("/", function (req, res) {
     return facultyModel.findAll().then(function (faculty) {
-        res.send(faculty);
+        res.send({status:"200",data:faculty,message:"faculty found"});
     })
 })
 route.post("/", upload.array(), function (req, res) {

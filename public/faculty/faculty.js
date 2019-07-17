@@ -12,11 +12,43 @@ $(window).on('load', function () {
         })
         $("#faculty-table").find("tbody").empty().append(body);
         $("#faculty-table").DataTable();
-        $('#faculty-table tbody').on('click', 'tr', function () {
-            $(this).toggleClass('selected');
+         $('#faculty-table tbody').on('click', 'tr', function () {
+         if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+        }
+        else {
+            $("#faculty-table tr.selected").removeClass('selected');
+            $(this).addClass('selected');
+        }
         });
 
     }
+
+function populatedepartments()
+{
+     $.ajax({
+        url: "/api/department/",
+        method: "GET"
+
+
+    }).done(function (response) {
+        
+        var choices="";
+        $.each(response['data'],function(id,column)
+        {
+            choices=choices+"<option value='"+column.id+"'>"+column.departmentName+"</option>";
+
+        })
+        console.log(choices);
+        $("#departmentId").append(choices);
+      
+        
+    }).fail(function (data) {
+        console.error(data);
+    }) 
+} 
+
+populatedepartments();   
 
 function populatefacultymentTable()
 {

@@ -42,14 +42,20 @@ $(window).on('load', function () {
         $.each(data, function (row, tablerow) {
 
 
-            body = body + "<tr><td>" + tablerow.batchName + "</td><td>" + tablerow.session + "</td></tr>"
+            body = body + "<tr id="+tablerow.id+"><td>" + tablerow.batchName + "</td><td>" + tablerow.session + "</td></tr>"
 
 
         })
         $("#batch-table").find("tbody").empty().append(body);
         $("#batch-table").DataTable();
         $('#batch-table tbody').on('click', 'tr', function () {
-            $(this).toggleClass('selected');
+         if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+        }
+        else {
+            $("#batch-table tr.selected").removeClass('selected');
+            $(this).addClass('selected');
+        }
         });
 
     }

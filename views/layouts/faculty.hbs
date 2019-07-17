@@ -20,9 +20,11 @@
 <div class="container">
     <div class="col-sm-4">
         <form class="form-group">
-            <div class="form-group">
-                <label for="batch">Department ID:</label>
-                <input type="text" id="departmentId" class="form-control" placeholder="Enter Department Id">
+              <div class="form-group">
+                <label for="pwd">Department Id:</label>
+                <select id="departmentId" class="form-control">
+                   
+                </select>
             </div>
             <div class="form-group">
                 <label for="batch">Teacher Name:</label>
@@ -60,6 +62,8 @@
             <tbody></tbody>
 
         </table>
+         <button class="btn btn-danger pull-right margin-left-5px" id="delete-batch">Delete</button>
+          <button class="btn btn-primary pull-right margin-left-2" id="edit-batch">Edit</button>
     </div>
 </div>
 <script src="/faculty/faculty.js"/>

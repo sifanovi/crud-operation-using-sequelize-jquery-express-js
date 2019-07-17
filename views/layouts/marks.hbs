@@ -1,0 +1,113 @@
+{{> header}}
+<body>
+<div class="page-header">
+    <h1>Marks</h1>
+</div>
+<div class="modal" id="batchModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <p>Marks Submitted Successfuly.</p>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="col-sm-4">
+        <form class="<p></p>form-group">
+            <div class="form-group">
+                <label for="pwd">Batch:</label>
+                <select id="batchId" class="form-control">
+                   
+                </select>
+            </div>
+           
+            <div class="form-group">
+                <label for="batch">Student Id:</label>
+                <input type="text" id="studentId" class="form-control" placeholder="Enter Student Id">
+            </div>
+            <div class="form-group">
+                <label for="pwd">Course:</label>
+                <select id="courseId" class="form-control">
+                   
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="pwd">Teacher:</label>
+                <select id="teacherId" class="form-control">
+                   
+                </select>
+            </div>
+
+             <div class="form-group">
+                <label for="batch">Number Of Quiz:</label>
+                <input type="text" id="numberOfQuiz" class="form-control" placeholder="Enter Number Of Quiz">
+            </div>
+            <div class="form-group" id="quiz-template">
+            </div>
+             <div class="form-group">
+                <label for="batch">Quiz</label>
+                <input type="text" id="quizMarks" class="form-control" placeholder="Enter Quiz Marks">
+            </div>
+            <div class="form-group">
+                <label for="batch">Final</label>
+                <input type="text" id="finalMarks" class="form-control" placeholder="Enter Final Marks">
+            </div>
+          
+            <div class="form-group">
+                <label for="batch">Grade:</label>
+                <select class="form-control" id="grade">
+                 <option value="">Select</option>
+                    <option value="4.00">A+</option>
+                    <option value="3.75">A</option>
+                    <option value="3.50">A-</option>
+                     <option value="3.25">B+</option>
+                      <option value="3.00">B</option>
+
+ <option value="2.75">B-</option>
+
+ <option value="2.50">C</option>
+
+ <option value="2.25">C-</option>
+ <option value="2.00">D</option>
+  <option value="0.00">F</option>
+
+
+
+
+
+                </select>
+            </div>
+            <button type="button" id="submit-marks" class="btn btn-info">Submit</button>
+        </form>
+    </div>
+
+    <div class="col-sm-8">
+        <table id="marks-table" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Batch</th>
+                <th>Student Id</th>
+                <th>Course</th>
+                <th>Teacher</th>
+                <th>Quiz</th>
+                <th>Final</th>
+
+
+            </tr>
+            </thead>
+            <tbody></tbody>
+
+        </table>
+         <button class="btn btn-danger pull-right margin-left-5px" id="delete-batch">Delete</button>
+          <button class="btn btn-primary pull-right margin-left-2" id="edit-batch">Edit</button>
+    </div>
+</div>
+<script src="/marks/marks.js"/>
+{{> footer}}

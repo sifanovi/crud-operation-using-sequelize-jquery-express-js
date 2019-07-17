@@ -11,10 +11,16 @@ $(window).on('load', function () {
 
         })
         $("#department-table").find("tbody").empty().append(body);
-        $("#department-table").DataTable();
         $('#department-table tbody').on('click', 'tr', function () {
-            $(this).toggleClass('selected');
+         if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+        }
+        else {
+            $("#department-table tr.selected").removeClass('selected');
+            $(this).addClass('selected');
+        }
         });
+       
 
     }
 
@@ -26,7 +32,7 @@ function populatedepartmentTable()
 
 
     }).done(function (data) {
-        populatetable(data);
+        populatetable(data['data']);
     }).fail(function (data) {
         console.error(data);
     })
