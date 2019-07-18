@@ -1,9 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
-var DB = require('../../models/index');
-var sequelize = DB.sequelize;
-var User = sequelize.models.user;
+var util = require('../../util/');
 
 router.get('/', function(req, res){
   if(req.isAuthenticated()) {
@@ -13,7 +11,7 @@ router.get('/', function(req, res){
   }
 });
 
-router.post('/', passport.authenticate('local', {
+router.post('/', passport.authenticate('local-login', {
   successRedirect: '/client/student',
   failureRedirect: '/client/login',
   

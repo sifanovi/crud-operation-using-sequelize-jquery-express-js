@@ -1,10 +1,12 @@
+
+
 $(window).on('load', function () {
 
 
 
 function resister(payload)
 {
-    console.log(payload);
+
      $.ajax({
         url: "/api/register/",
         method: "POST",
@@ -16,9 +18,12 @@ function resister(payload)
 
 
     }).done(function (data) {
-        console.log(data);
+        alert("User Created Succesfuly");
+       window.location.href="/client/login";
+
+
     }).fail(function (data) {
-        console.error(data);
+       alert("User Already exists or something wrong")
     })
 
 }
