@@ -19,6 +19,12 @@ route.get("/:id", function (req, res) {
     })
 })
 
+route.get("/:courseId/:studentId", function (req, res) {
+    return marksModel.findOne({where:{courseId:req.params.courseId,studentId:req.params.studentId}}).then(function (result) {
+        res.send({status:"200",data:result,"message":"found"});
+    })
+})
+
 route.post("/", upload.array(), function (req, res) {
     var postData = req.body;
 

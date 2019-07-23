@@ -31,6 +31,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 hbs.registerPartial('footer', fs.readFileSync(__dirname + '/views/partials/footer.hbs', 'utf8'));
 hbs.registerPartial('header', fs.readFileSync(__dirname + '/views/partials/header.hbs', 'utf8'));
+hbs.registerPartial('footerhome', fs.readFileSync(__dirname + '/views/partials/homefooter.hbs', 'utf8'));
+hbs.registerPartial('headerhome', fs.readFileSync(__dirname + '/views/partials/homeheader.hbs', 'utf8'));
 
 app.use('/api', require('./route/api').route);
 app.use('/client', require('./route/client').route);

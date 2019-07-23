@@ -10,6 +10,9 @@ route.use('/login',require('./login'));
 route.use('/logout',require('./logout'))
 
 route.use('/signup',require('./signup'))
+route.use('/home',require('./home'))
+route.use('/teacher',require('./teacher'))
+route.use('/result',require('./result'))
 
 
 exports=module.exports={route};
