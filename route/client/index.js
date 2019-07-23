@@ -13,6 +13,8 @@ route.use('/signup',require('./signup'))
 route.use('/home',require('./home'))
 route.use('/teacher',require('./teacher'))
 route.use('/result',require('./result'))
+route.use('/notice',require('./notice'))
+route.use('/noticelist',require('./notice-home'))
 
 
 exports=module.exports={route};

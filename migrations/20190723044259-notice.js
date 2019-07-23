@@ -1,38 +1,46 @@
 'use strict';
 
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-     return queryInterface.createTable('notice',{
-         id: {
-            allowNull: false,
-            autoIncrement: true,
-            primaryKey: true,
-            type: Sequelize.INTEGER
-        },
-        content:{
-           allowNull: false,
-           type: Sequelize.STRING,
-        }
-     })
+    up: (queryInterface, Sequelize) => {
 
-    /*
-      Add altering commands here.
-      Return a promise to correctly handle asynchronicity.
+        return queryInterface.createTable('notice', {
+            id: {
+                allowNull: false,
+                autoIncrement: true,
+                primaryKey: true,
+                type: Sequelize.INTEGER
+            },
+            content: {
+                type: Sequelize.STRING(9999),
+                allowNull: false,
+            },
+            createdAt: {
+                type: Sequelize.DATE,
+                allowNull: false
+            },
+            updatedAt: {
+                type: Sequelize.DATE,
+                allowNull: false
+            }
 
-      Example:
-      return queryInterface.createTable('users', { id: Sequelize.INTEGER });
-    */
-  },
+        })
+        /*
+          Add altering commands here.
+          Return a promise to correctly handle asynchronicity.
 
-  down: (queryInterface, Sequelize) => {
+          Example:
+          return queryInterface.createTable('users', { id: Sequelize.INTEGER });
+        */
+    },
 
-    return queryInterface.dropTable('notice')
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
+    down: (queryInterface, Sequelize) => {
+        return queryInterface.dropTable('notice');
+        /*
+          Add reverting commands here.
+          Return a promise to correctly handle asynchronicity.
 
-      Example:
-      return queryInterface.dropTable('users');
-    */
-  }
+          Example:
+          return queryInterface.dropTable('users');
+        */
+    }
 };

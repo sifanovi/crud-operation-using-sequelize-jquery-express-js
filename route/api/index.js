@@ -9,6 +9,7 @@ route.use('/student',require('./student'));
 route.use('/takes',require('./takes'));
 route.use('/marks',require('./marks'));
 route.use('/register',require('./register'));
+route.use('/notice',require('./notice'));
 
 
 exports=module.exports={route};
