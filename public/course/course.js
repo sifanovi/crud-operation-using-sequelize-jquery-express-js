@@ -1,5 +1,12 @@
 $(window).on('load', function () {
 
+     function resetForm()
+     {
+         $("#courseName").val("");
+         $("#courseNumber").val("");
+         $("#credit").val("");
+     }
+
 
       $("#course-form").validate({
         rules: {
@@ -11,6 +18,7 @@ $(window).on('load', function () {
                 required: true,
                 minlength: 3
             },
+            credit:'required',
             
         },
         messages: {
@@ -48,7 +56,7 @@ $(window).on('load', function () {
         $.each(data, function (row, tablerow) {
 
 
-            body = body + "<tr id="+tablerow.id+"><td>" + tablerow.courseName + "</td><td>" + tablerow.courseNumber + "</td></tr>"
+            body = body + "<tr id="+tablerow.id+"><td>" + tablerow.courseName + "</td><td>" + tablerow.courseNumber + "</td><td>" + tablerow.credit+ "</td></tr>"
 
 
         })
@@ -97,6 +105,7 @@ populatecourseTable();
 
 
         }).done(function (data) {
+            resetForm();
 
            alert("Course Created Succesfully");
             if ($.fn.DataTable.isDataTable("#course-table")) {
@@ -113,6 +122,7 @@ populatecourseTable();
         payload = {};
         payload['courseName'] = $("#courseName").val();
         payload['courseNumber'] = $("#courseNumber").val();
+        payload['credit'] = $("#credit").val();
         createCourse(payload)
 }
     })
@@ -128,6 +138,7 @@ populatecourseTable();
 
 
         }).done(function (data) {
+            resetForm();
 
             alert("Course Updated Succesfully");
             if ($.fn.DataTable.isDataTable("#course-table")) {
@@ -145,6 +156,7 @@ populatecourseTable();
         payload = {};
         payload['courseName'] = $("#courseName").val();
         payload['courseNumber'] = $("#courseNumber").val();
+          payload['credit'] = $("#credit").val();
         updateCourse(id,payload)
         }
 
@@ -183,6 +195,8 @@ populatecourseTable();
        }).done(function (data) {
         $("#courseName").val(data.data.courseName);
         $("#courseNumber").val(data.data.courseNumber);
+        $("#credit").val(data.data.credit);
+
         $("#submit-course").addClass("hide");
         $("#update-course").removeClass("hide");
        })

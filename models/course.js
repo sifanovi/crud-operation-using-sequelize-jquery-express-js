@@ -18,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
                     type: DataTypes.STRING,
                     allowNull: false
                 },
+            credit: {
+                allowNull: false,
+                type: DataTypes.STRING
+            },
             createdAt:
                 {
                     type: DataTypes.DATE,
