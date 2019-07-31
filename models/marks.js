@@ -52,7 +52,15 @@ module.exports = (sequelize, DataTypes) => {
             }
         },
         {
-            freezeTableName: true
-        })
+
+
+        freezeTableName: true
+})
+
+    marks.associate = (models) => {
+        marks.belongsTo(models.course, {
+            as: 'course'
+        });
+    }
     return marks;
 }

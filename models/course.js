@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    var batch = sequelize.define('course', {
+    var course = sequelize.define('course', {
 
             id:
                 {
@@ -38,7 +38,14 @@ module.exports = (sequelize, DataTypes) => {
 
         },
         {
+
+
             freezeTableName: true
         })
-    return batch;
+   course.associate = (models) => {
+        course.hasMany(models.marks, {
+            as: 'courseId'
+        });
+    }
+    return course;
 }

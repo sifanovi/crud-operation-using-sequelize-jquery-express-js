@@ -5,6 +5,7 @@ var upload = multer();
 var DB = require('../../models/index');
 var sequelize = DB.sequelize;
 var marksModel = sequelize.models.marks;
+var courseModel = sequelize.models.course;
 
 route.use(bodyParser.json()); // for parsing application/json
 route.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencoded
@@ -19,8 +20,15 @@ route.get("/:id", function (req, res) {
     })
 })
 
-route.get("/:courseId/:studentId", function (req, res) {
-    return marksModel.findOne({where:{courseId:req.params.courseId,studentId:req.params.studentId}}).then(function (result) {
+route.get("/:batchId/:studentId", function (req, res) {
+    return marksModel.findAll({
+    include: [{
+    model:courseModel,
+    as: 'course',
+     //
+  }],
+    where: { batchId: req.params.batchId,studentId:req.params.studentId }
+}).then(function (result) {
         res.send({status:"200",data:result,"message":"found"});
     })
 })

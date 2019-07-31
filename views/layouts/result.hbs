@@ -8,23 +8,44 @@
         </div>
 
         <div class="form-group">
-            <select id="course" class="form-control">
+            <select id="batch" class="form-control">
 
             </select>
         </div>
         <div class="form-group">
             <button id="getResult" class="btn btn-info">Submit</button>
         </div>
-        <div class="form-group">
-            <label>Quiz:</label> <span class="text-primary" id="quiz"></span>
-        </div>
-        <div class="form-group">
-            <label>Final:</label> <span class="text-primary" id="final"></span>
-        </div>
-        <div class="form-group">
-            <label>Grade:</label> <span class="text-primary" id="grade"></span>
-        </div>
 
+    </div>
+
+      <div class="col-sm-8">
+        <div class="row mb-5">
+            <table id="marks-table" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                <tr>
+
+
+                    <th>Course</th>
+                    <th>Credit</th>
+                    <th>Attendance</th>
+                    <th>Quiz</th>
+                    <th>Final</th>
+                    <th>Total</th>
+                    <th>Grade</th>
+
+
+                </tr>
+                </thead>
+                <tbody></tbody>
+
+            </table>
+
+        <div class="container mt-5">
+            <p><span class="text-primary">Total Marks : </span><span id="showtotal"></span></p>
+            <p><span class="text-primary"> Total Credit : </span><span id="showcredit"></span></p>
+            <p><span class="text-primary">Cgpa : </span><span id="cgpa"></span></p>
+
+        </div>
     </div>
 
 </div>
